@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FileStatisticFilter.SearchConsoleApp": {
+      "commandName": "Project",
+      "commandLineArgs": "--input C:\\Windows --output out.csv"
+    }
+  }
+}
