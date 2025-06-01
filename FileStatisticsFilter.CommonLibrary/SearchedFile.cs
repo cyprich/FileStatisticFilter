@@ -101,7 +101,7 @@
                    $"{IsReadOnly}{delimiter}";
         }
 
-        private static string GetReadableSize(long size)
+        public static string GetReadableSize(long size)
         {
             string[] sizes = ["B", "KB", "MB", "GB", "TB"];  // TODO add more if needed
             double currentSize = size;

@@ -1,0 +1,100 @@
+﻿<Window x:Class="FileStatisticsFilter.WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FileStatisticsFilter.WpfApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Margin="8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0" Margin="0 0 8 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Open..." Padding="8 2" Click="ButtonBase_OnClick"/>
+            <StackPanel Grid.Column="2" Orientation="Horizontal">
+                <TextBlock Text="Directory: " VerticalAlignment="Center"/>
+                <ComboBox Width="100" Margin="0 0 8 0"/>
+                <CheckBox VerticalAlignment="Center" Margin="0 0  2 0"/>
+                <TextBlock Text="Include subdirectories" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+
+        <GroupBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Header="Statistics">
+
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Files: "/>
+                <TextBlock Grid.Row="0" Grid.Column="1" x:Name="FilesTextBlock"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Directories: "/>
+                <TextBlock Grid.Row="1" Grid.Column="1" x:Name="DirectoriesTextBlock"/>
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Total size: "/>
+                <TextBlock Grid.Row="2" Grid.Column="1" x:Name="SizeTextBlock"/>
+
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Created time (oldest): "/>
+                <TextBlock Grid.Row="3" Grid.Column="1" x:Name="OldestCreatedTextBlock"/>
+
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="Created time (newest): "/>
+                <TextBlock Grid.Row="4" Grid.Column="1" x:Name="NewestCreatedTextBlock"/>
+
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="Modified time (oldest): "/>
+                <TextBlock Grid.Row="5" Grid.Column="1" x:Name="OldestModifiedTextBlock"/>
+
+                <TextBlock Grid.Row="6" Grid.Column="0" Text="Modified time (newest): "/>
+                <TextBlock Grid.Row="6" Grid.Column="1" x:Name="NewestModifiedTextBlock"/>
+
+                <TextBlock Grid.Row="7" Grid.Column="0" Text="Readonly files: "/>
+                <TextBlock Grid.Row="7" Grid.Column="1" x:Name="ReadonlyTextBlock"/>
+
+                <DataGrid Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 4 0 0">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Extension"/>
+                        <DataGridTextColumn Header="Count"/>
+                        <DataGridTextColumn Header="Total size"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </GroupBox>
+
+        <DataGrid Grid.Row="1" Grid.Column="0" Margin="0 8 8 0" 
+                  x:Name="MainDataGrid" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="File name" Binding="{Binding FileName}"/>
+                <DataGridTextColumn Header="Directory" Binding="{Binding Directory}"/>
+                <DataGridTextColumn Header="Size" Binding="{Binding SizeReadable}"/>
+                <DataGridTextColumn Header="Created time" Binding="{Binding CreatedTime}"/>
+                <DataGridTextColumn Header="Modified time" Binding="{Binding ModifiedTime}"/>
+                <DataGridTextColumn Header="Read only" Binding="{Binding IsReadOnly}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>

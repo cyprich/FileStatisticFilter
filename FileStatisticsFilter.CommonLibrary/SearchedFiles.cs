@@ -27,7 +27,7 @@ namespace FileStatisticsFilter.CommonLibrary
                 var lines = File.ReadAllLines(file.FullName);
                 var result = new List<SearchedFile>();
 
-                foreach (var line in lines)
+                foreach (var line in lines[1..])  // ignoring header
                 {
                     result.Add(new SearchedFile(line));
                 }
